@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {createPost} from "../redux/actions";
+import {createPost, hideAlert, showAlert} from "../redux/actions";
 
 class PostForm extends React.Component {
     constructor(props) {
@@ -12,13 +12,16 @@ class PostForm extends React.Component {
     }
 
     submitHandler = event => {
+
         event.preventDefault()
 
         const {title} = this.state
 
         if (!title.trim()) {
+            this.props.showAlert('danger', 'Empty Field')
             return
         }
+        this.props.hideAlert()
         const newPost = {
             title, id: Date.now().toString()
         }
@@ -58,7 +61,9 @@ class PostForm extends React.Component {
 }
 
 const mapDispatchToProps = {
-    createPost
+    createPost,
+    showAlert,
+    hideAlert
 }
 
 export default connect(null, mapDispatchToProps)(PostForm)

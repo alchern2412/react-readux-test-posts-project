@@ -2,10 +2,16 @@ import React from 'react';
 import PostForm from "./components/PostForm";
 import Posts from "./components/Posts";
 import FetchedPosts from "./components/FetchedPosts";
+import {Alert} from "./components/Alert";
 
 function App() {
     return (
         <div className="container pt-3">
+            <div className="row">
+                <div className="col">
+                    <Alert/>
+                </div>
+            </div>
             <div className="row">
                 <div className="col">
                     <PostForm/>
